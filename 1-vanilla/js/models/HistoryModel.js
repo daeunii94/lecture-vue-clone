@@ -1,12 +1,12 @@
 export default {
-  data: [
+  data: [ //컬렉션 형태로 가지고있음
     { keyword: '검색기록2', date: '12.03' },
     { keyword: '검색기록1', date: '12.02'},
     { keyword: '검색기록0', date: '12.01' },
   ],
 
-  list() {
-    return Promise.resolve(this.data)
+  list() { //데이터 리턴
+    return Promise.resolve(this.data) //promise 패턴 이용
   },
   
   add(keyword = '') {

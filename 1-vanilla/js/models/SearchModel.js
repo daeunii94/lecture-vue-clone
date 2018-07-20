@@ -12,7 +12,7 @@ const data = [
 ]
 
 export default {
-  list(query) {
+  list(query) { 
     return new Promise(res => {
       setTimeout(()=> {
         res(data)
