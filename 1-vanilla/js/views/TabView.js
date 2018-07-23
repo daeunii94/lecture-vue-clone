@@ -16,7 +16,7 @@ TabView.setActiveTab = function(tabName) { //set Active Tab
         li.className = li.innerHTML === tabName ? 'active' : ''
     }) //All쓰면 전체 데이터
 
-
+    this.show()
 }
 
 TabView.bindClick = function() {

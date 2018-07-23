@@ -1,7 +1,6 @@
 import FormView from '../views/FormView.js'
 import ResultView from '../views/ResultView.js'
 import TabView from '../views/TabView.js'
-
 import KeywordView from '../views/KeywordView.js'
 
 import SearchModel from '../models/SearchModel.js'
@@ -33,13 +32,9 @@ export default {
 
     if (this.selectedTab === '추천 검색어') {
       this.fetchSearchKeyword()
-     
     } else {
-      
-
+      debugger
     }
-
-
     ResultView.hide()
 
   },
@@ -48,11 +43,12 @@ export default {
     KeywordModel.list().then(data => {
       KeywordView.render(data)
     })
-
   },
   
   search(query) {
+
     console.log(tag, 'search()', query)
+    FormView.setValue(query)
     SearchModel.list(query).then(data => { //조회
       this.onSearchResult(data)
     })
@@ -66,7 +62,7 @@ export default {
 
   onResetForm() {
     console.log(tag, 'onResetForm()')
-    ResultView.hide()
+    this.renderView()
   },
 
   onSearchResult(data) {

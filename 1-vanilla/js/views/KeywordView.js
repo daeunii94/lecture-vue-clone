@@ -4,13 +4,16 @@ const tag = '[KeywordView]'
 
 const KeywordView = Object.create(View)
 
+KeywordView.messages = {
+    NO_KEYWORDS: '추천 검색어가 없습니다'
+}
 KeywordView.setup = function(el) {
     this.init(el)
     return this
 }
 
 KeywordView.render = function (data = []) {
-    this.el.innerHTML = data.length ? this.getKeywordHtml(data) :'추천 검색어가 없습니다'
+    this.el.innerHTML = data.length ? this.getKeywordHtml(data) : this.messages.NO_KEYWORDS
     this.bindClickEvent() //돔이 만들어진 후
     this.show() 
 }
@@ -29,8 +32,8 @@ KeywordView.bindClickEvent = function() {
     });
 }
 
-KeywordView.onClickKeyword = function(e) {
-    const {keyword} = e.currentTarget.dataset
+KeywordView.onClickKeyword = function(e) { //어떤 키워드 클릭됐는지
+    const {keyword} = e.currentTarget.dataset //추출해서 
     this.emit('@click', {keyword})
 }
 
