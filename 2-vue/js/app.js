@@ -26,8 +26,8 @@ new Vue({
         },
         resetForm() {
             this.query = '' 
-            //todo remove results ..
-            debugger
+            this.submitted = false
+            this.searchResult = []
         }
     }
 })
