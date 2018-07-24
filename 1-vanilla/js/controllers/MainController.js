@@ -28,7 +28,7 @@ export default {
       .on('@click', e => this.onClickHistory(e.detail.keyword))
       .on('@remove', e => this.onRemoveHistory(e.detail.keyword))
     
-    this.selectedTab = '최근 검색어'
+    this.selectedTab = '추천 검색어'
     this.renderView()
     
   },
@@ -88,7 +88,8 @@ export default {
   },
 
   onChangeTab(tabName) {
-    debugger
+    this.selectedTab = tabName
+    this.renderView()
   },
 
   onClickKeyword(keyword) {
