@@ -16,6 +16,7 @@ KeywordView.render = function (data = []) {//재활용
     this.el.innerHTML = data.length ? this.getKeywordHtml(data) : this.messages.NO_KEYWORDS
     this.bindClickEvent() //돔이 만들어진 후
     this.show() 
+    return this
 }
 
 KeywordView.getKeywordHtml = function (data) {
@@ -33,8 +34,8 @@ KeywordView.bindClickEvent = function() {
 }
 
 KeywordView.onClickKeyword = function(e) { //어떤 키워드 클릭됐는지
-    const {keyword} = e.currentTarget.dataset //추출해서 
-    this.emit('@click', {keyword})
+    const { keyword } = e.currentTarget.dataset //추출해서 
+    this.emit('@click', { keyword })
 }
 
 export default KeywordView

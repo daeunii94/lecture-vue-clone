@@ -27,7 +27,7 @@ FormView.bindEvents = function () {
 FormView.onKeyup = function (e) {
   const enter = 13
   this.showResetBtn(this.inputEl.value.length)
-  if(this.inputEl.value.length) this.emit('@reset')
+  if(!this.inputEl.value.length) this.emit('@reset')
   if (e.keyCode !== enter) return
   this.emit('@submit', { input: this.inputEl.value }) //엔터 입력하면 검색결과 보이게 컨트롤러에게 위임만 함
 }

@@ -25,7 +25,8 @@ export default {
       .on('@click', e => this.onClickKeyword(e.detail.keyword))
 
     HistoryView.setup(document.querySelector('#search-history'))
-      .on('@click', e => this.onClickHistory(e.detail.history))
+      .on('@click', e => this.onClickHistory(e.detail.keyword))
+      .on('@remove', e => this.onRemoveHistory(e.detail.keyword))
     
     this.selectedTab = '최근 검색어'
     this.renderView()
@@ -38,11 +39,13 @@ export default {
 
     if (this.selectedTab === '추천 검색어') {
       this.fetchSearchKeyword()
+      HistoryView.hide()
     } else {
       this.fetchSearchHistory()
+      KeywordView.hide()
     }
-    ResultView.hide()
 
+    ResultView.hide()
   },
 
   fetchSearchKeyword() {
@@ -53,7 +56,7 @@ export default {
 
   fetchSearchHistory() {
     HistoryModel.list().then(data => {//HistoryModel에서 data 가져옴
-      HistoryView.render(data)//KeywordView의 render호출
+      HistoryView.render(data).bindRemoveBtn()//KeywordView의 render호출
     })
   },
   
@@ -80,6 +83,7 @@ export default {
   onSearchResult(data) {
     TabView.hide()
     KeywordView.hide()
+    HistoryView.hide()
     ResultView.render(data)
   },
 
@@ -93,6 +97,10 @@ export default {
 
   onClickHistory(keyword) {
     this.search(keyword)
+  }, 
+  
+  onRemoveHistory(keyword) {
+    HistoryModel.remove(keyword)
+    this.renderView()//다시 화면
   }
-
 }
