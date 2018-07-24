@@ -4,6 +4,7 @@ new Vue({
     el: '#app',
     data: {
         query : '', //입력 데이터 받아서 저장
+        submitted: false,
         searchResult: []
     },
     methods: {
@@ -19,6 +20,7 @@ new Vue({
         },
         search() {
             SearchModel.list().then(data => {
+                this.submitted = true
                 this.searchResult = data
             })
         },
