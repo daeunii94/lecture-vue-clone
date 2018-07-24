@@ -6,7 +6,7 @@ const HistoryView = Object.create(KeywordView)
 
 HistoryView.messages.NO_KEYWORDS = '검색 이력이 없습니다'
 
-HistoryView.getKeywordsHtml = function (data) {
+HistoryView.getKeywordHtml = function (data) {
     return data.reduce((html, item) => {
       html += `<li data-keyword="${item.keyword}">
         ${item.keyword} 
