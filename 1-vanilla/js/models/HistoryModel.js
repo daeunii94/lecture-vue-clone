@@ -9,7 +9,7 @@ export default {
     return Promise.resolve(this.data) //promise 패턴 이용
   },
   
-  add(keyword = '') {
+  add(keyword = '') { 
     keyword = keyword.trim()
     if (!keyword) return 
     if (this.data.some(item => item.keyword === keyword)) {
