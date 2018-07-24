@@ -12,7 +12,7 @@ KeywordView.setup = function(el) {
     return this
 }
 
-KeywordView.render = function (data = []) {
+KeywordView.render = function (data = []) {//재활용
     this.el.innerHTML = data.length ? this.getKeywordHtml(data) : this.messages.NO_KEYWORDS
     this.bindClickEvent() //돔이 만들어진 후
     this.show() 
