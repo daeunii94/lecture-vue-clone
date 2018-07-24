@@ -60,10 +60,11 @@ export default {
     })
   },
   
-  search(query) {
-
+  search(query) { //항상 실행
     console.log(tag, 'search()', query)
     FormView.setValue(query)
+    HistoryModel.add(query)
+    
     SearchModel.list(query).then(data => { //조회
       this.onSearchResult(data)
     })
