@@ -1,5 +1,6 @@
 import SearchModel from './models/SearchModel.js'
 import KeywordModel from './models/KeywordModel.js'
+import HistoryModel from './models/HistoryModel.js'
 
 new Vue({
     el: '#app',
@@ -9,12 +10,14 @@ new Vue({
         tabs: ['추천 검색어', '최근 검색어'],
         selectedTab: '',
         keywords: [], //추천검색어
+        history: [], //최근검색어
         searchResult: []
         
     },
     created() { //view instance 생성될때
         this.selectedTab = this.tabs[0]
         this.fetchKeyword()
+        this.fetchHistory()
     },
     methods: {
         onSubmit(e) {
@@ -37,6 +40,11 @@ new Vue({
         fetchKeyword() { // data 를 가져와 
             KeywordModel.list().then(data => {
                 this.keywords = data
+            })
+        },
+        fetchHistory() {
+            HistoryModel.list().then(data => {
+                this.history = data
             })
         },
         search() {
