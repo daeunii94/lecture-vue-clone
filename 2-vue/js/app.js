@@ -37,6 +37,10 @@ new Vue({
             this.query = keyword//선택된 키워드를 입력값으로 바인딩함(입력값이 query에 저장됨)
             this.search()//검색 결과 페이지로 이동
         },
+        onClickRemoveHistory(keyword) {
+            HistoryModel.remove(keyword)
+            this.fetchHistory()
+        },
         fetchKeyword() { // data 를 가져와 
             KeywordModel.list().then(data => {
                 this.keywords = data
@@ -52,6 +56,8 @@ new Vue({
                 this.submitted = true
                 this.searchResult = data
             })
+            HistoryModel.add(this.query)
+            this.fetchHistory()
         },
         resetForm() {
             this.query = '' 
